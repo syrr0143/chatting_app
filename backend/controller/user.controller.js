@@ -84,4 +84,43 @@ const logout = async (req, res) => {
     }
 };
 
-export { signup, logout, userLogin };
+const getallusers = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        if (!userId) {
+            return res.status(400).json({ message: "user not logged in , you must login first" })
+        }
+        const loggedInuser = await User.findById({ _id: userId });
+        if (!loggedInuser) {
+            return res.status(404).json({ message: "user not found" })
+        }
+        const allUser = await User.find({ _id: { $ne: loggedInuser } });
+        if (!allUser) {
+            return res.status(404).json({ message: "no user found" });
+        }
+        return res.status(200).json({ message: "all users found", users: allUser });
+    } catch (error) {
+        return res.status(500).json({ message: `internal server error, something went wrong`, error: error.message })
+    }
+}
+// sending media in chat like photo , video , location tag, video call ,audio call, search bar , create group , dm , 
+const sendMedia = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        if (!userId) {
+            return res.status(400).json({ message: "user not logged in , you must login first" })
+        }
+        const loggedInuser = await User.findById({ _id: userId });
+        if (!loggedInuser) {
+            return res.status(404).json({ message: "user not found" })
+        }
+        const media = await uploadOnCloudinary(req.files?.media[0]?.path);
+        if (!media) {
+            return res.status(400).json({ message: "media file is required to be uploaded successfully" });
+        };
+
+    } catch (error) {
+        return res.status(500).json({ message: `internal server error, something went wrong`, error: error.message })
+    }
+}
+export { signup, logout, userLogin, getallusers };
