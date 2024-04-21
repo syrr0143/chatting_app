@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Login from './pages/login/Login.jsx'
+import Signup from './pages/signup/Signup.jsx'
+import Home from './pages/home/Home.jsx'
 import './App.css'
 
 function App() {
@@ -8,9 +9,8 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div className='p-6 h-screen  items-center justify-center '><Home /></div>
+
     </>
   )
 }
