@@ -5,7 +5,7 @@ import startmessage from '../assets/startmessage.gif'
 import start from '../assets/start.png'
 
 const MessageContainer = () => {
-    let chatselected = false;
+    let chatselected = true;
     return (
         <div className='lg:min-w-[68vw] md:w-[40em] sm:w-[50vw] flex flex-col'>
             {chatselected ? (

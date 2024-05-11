@@ -17,6 +17,7 @@ const generateAccessToken = async (req, res) => {
 const signup = async (req, res) => {
     try {
         const { name, username, password } = req.body;
+        console.log('from frontend ,', name, username, password)
         if ([name, username, password].some((field) => field?.trim() === "")) {
             return res.status(400).json({ message: "no details enetered for name,username, passowrd" });
         }
@@ -24,16 +25,19 @@ const signup = async (req, res) => {
         if (existingUser) {
             return res.status(409).json({ message: "User with the same username already exists", existinguser: existingUser });
         };
-        const avatarLocalPath = req.files?.avatar[0]?.path;
-        if (!avatarLocalPath) {
-            return res.status(400).json({ message: "avatar file is required from local path" });
-        };
-        const avatar = await uploadOnCloudinary(avatarLocalPath);
-        if (!avatar) {
-            return res.status(400).json({ message: "avatar file is required to be uploaded successfully" });
-        }
+        // const avatarLocalPath = req.files?.avatar[0]?.path;
 
-        const newUser = await User.create({ name: name, username: username, password: password, avatar: avatar.url });
+        // console.log(avatarLocalPath, 'from frontend')
+        // if (!avatarLocalPath) {
+        //     return res.status(400).json({ message: "avatar file is required from local path" });
+        // };
+        // const avataruploaded = await uploadOnCloudinary(avatarLocalPath);
+        // if (!avataruploaded) {
+        //     return res.status(400).json({ message: "avatar file is required to be uploaded successfully" });
+        // }
+
+        // const newUser = await User.create({ name: name, username: username, password: password, avatar: avataruploaded.url });
+        const newUser = await User.create({ name: name, username: username, password: password });
 
         return res.status(201).json({ message: "new user created successfully", userCreated: newUser })
     } catch (error) {
