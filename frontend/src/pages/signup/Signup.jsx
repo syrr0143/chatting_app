@@ -17,7 +17,17 @@ function Signup() {
     const handlesubmit = async (e) => {
         e.preventDefault();
         console.log(input)
+
         await signup(input);
+        setInput({
+            username: '',
+            fullname: '',
+            password: '',
+            confirmPassword: '',
+            gender: '',
+            email: '',
+            avatar: '',
+        });
     }
 
 

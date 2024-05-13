@@ -7,7 +7,7 @@ function Conversations() {
     console.log('conversation', conversation);
     return (
         <div className="py-2 flex flex-col overflow-auto">
-            {conversation.map((conversationItem) => (
+            {conversation?.map((conversationItem) => (
                 <Conversation key={conversationItem._id} conversation={conversationItem} />
             ))}
         </div>

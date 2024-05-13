@@ -49,6 +49,10 @@ function userSignup() {
             if (data.error) {
                 throw new Error(data.error);
             }
+            if (data.message === 'User with the same username already exists') {
+                toast.error('User with the same username already exists')
+                throw new Error(data.error);
+            }
             // set the localstorage 
             localStorage.setItem("chat-user", JSON.stringify(data));
             // setting the constext t be passed where ever requireed 
@@ -73,8 +77,7 @@ function userSignup() {
             !fullname ||
             !password ||
             !confirmPassword ||
-            !gender ||
-            !email) {
+            !gender) {
             toast.error("All fields are required to filled.")
             return false;
         }

@@ -1,35 +1,33 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import Message from './Message.jsx'
+import useGetMessages from '../../hooks/useGetMessages.js';
 
 const Messages = () => {
+    const { loading, messages } = useGetMessages();
+    const messagesEndRef = useRef(null);
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+    }
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (!messages) {
+        return <div className='text-white'>This chat is end to end encrypted , start chat now to view messages </div>;
+    }
     return (
         <div >
-            <div className="chat chat-start">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img alt="Tailwind CSS chat bubble component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                    </div>
-                </div>
-
-                <div className="chat-bubble">You were the Chosen One!</div>
-                <div className="chat-footer text-gray-300 opacity-75">
-                    12:46
-                </div>
-
-            </div>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img alt="Tailwind CSS chat bubble component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                    </div>
-                </div>
-                <div className="chat-bubble">I hate you!</div>
-                <div className="chat-footer text-gray-300 opacity-75">
-                    12:46
-                </div>
-            </div>
-
+            {messages?.map((message) => (
+                <Message key={message._id} message={message} />
+            ))}
+            <div className='mt-24' ref={messagesEndRef}></div> {/* Empty div to scroll to */}
         </div>
-    )
+    );
 }
+export default Messages;
 
-export default Messages
+
