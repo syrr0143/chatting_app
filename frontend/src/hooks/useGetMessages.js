@@ -25,7 +25,7 @@ const useGetMessages = () => {
                     console.log(data.error)
                     throw new Error(data.error);
                 }
-                setMessages(data.conversation?.message);
+                setMessages(data?.conversation?.message);
             } catch (error) {
                 console.log(error)
 

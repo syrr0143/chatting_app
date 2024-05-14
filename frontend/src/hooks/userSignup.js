@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext.jsx';
-
+import { useUserContext } from '../context/UserContext.jsx';
 function userSignup() {
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useAuthContext();
+    const { userSignedUp } = useUserContext();
     const signup = async ({ username,
         fullname,
         password,
@@ -53,11 +54,12 @@ function userSignup() {
                 toast.error('User with the same username already exists')
                 throw new Error(data.error);
             }
-            // set the localstorage 
-            localStorage.setItem("chat-user", JSON.stringify(data));
-            // setting the constext t be passed where ever requireed 
-            setAuthUser(data);
+            // // set the localstorage 
+            // localStorage.setItem("chat-user", JSON.stringify(data));
+            // // setting the constext t be passed where ever requireed 
+            // setAuthUser(data);
             toast.success("Signup successfull")
+            userSignedUp();
         } catch (error) {
             toast.error(error.message)
         } finally {

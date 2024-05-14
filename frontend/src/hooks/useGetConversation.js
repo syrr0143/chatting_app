@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useUserContext } from '../context/UserContext.jsx'
 import toast from "react-hot-toast";
 
 const useGetConversation = () => {
     const [loading, setLoading] = useState(false);
     const [conversation, setConversation] = useState([]);
+    const { userChanged } = useUserContext();
 
     useEffect(() => {
         const getConversation = async () => {
@@ -31,7 +33,7 @@ const useGetConversation = () => {
         };
 
         getConversation(); // Invoke the getConversation function
-    }, []); // Empty dependency array to run only once
+    }, [userChanged]); // Empty dependency array to run only once
 
     return { loading, conversation };
 };

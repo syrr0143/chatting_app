@@ -11,7 +11,7 @@ const MessageInput = () => {
         setMessage('');
     }
     return (
-        <form onSubmit={handlesubmit} className="fixed bottom-0 w-full max-w-4xl mx-auto p-4">
+        <form onSubmit={handlesubmit} className="fixed bottom-0 w-[-webkit-fill-available] mx-auto p-4">
             <div className='gap-2 flex justify-between'>
                 <input type="text" placeholder="Type here" className="text-gray-500 font-bold input input-bordered w-full"
                     value={message}
