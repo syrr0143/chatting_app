@@ -16,7 +16,7 @@ function Signup() {
     });
     const handlesubmit = async (e) => {
         e.preventDefault();
-        console.log(input)
+        //console.log(input)
 
         await signup(input);
         setInput({

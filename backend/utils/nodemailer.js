@@ -33,7 +33,7 @@ async function sendEmail(str, data) {
             subject: Osubject,
             html: Ohtml,
         });
-        console.log("Message sent: %s", info.messageId);
+        // console.log("Message sent: %s", info.messageId);
     } catch (error) {
         console.error("Error sending email:", error);
     }

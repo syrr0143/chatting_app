@@ -8,7 +8,7 @@ function Login() {
     const { loading, login } = uselogin();
     const handlesubmit = async (e) => {
         e.preventDefault();
-        console.log(username, password);
+        //console.log(username, password);
         await login({ username, password })
     }
     return (

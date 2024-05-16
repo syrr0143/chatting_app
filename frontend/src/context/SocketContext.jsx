@@ -11,30 +11,30 @@ export const SocketContextProvider = ({ children }) => {
     const { authUser } = useAuthContext();
 
     useEffect(() => {
-        console.log('AuthUser:', authUser);
+        //console.log('AuthUser:', authUser);
         if (authUser) {
 
             const newSocket = io('http://localhost:4000', {
-                query: { userid: authUser.user?._id },
+                query: { userid: authUser.user._id },
             });
             setSocket(newSocket);
 
             newSocket.on('connect', () => {
-                console.log('Socket connected:', newSocket.id);
+                //console.log('Socket connected:', newSocket.id);
             });
 
             newSocket.on('getOnlineUsers', (users) => {
-                console.log('Received online users:', users);
+                //console.log('Received online users:', users);
                 setOnlineusers(users);
             });
 
             return () => {
-                console.log('Disconnecting socket:', newSocket.id);
+                //console.log('Disconnecting socket:', newSocket.id);
                 newSocket.close();
             };
         } else {
             if (socket) {
-                console.log('Closing existing socket:', socket.id);
+                //console.log('Closing existing socket:', socket.id);
                 socket.close();
             }
             setSocket(null);

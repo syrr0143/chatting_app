@@ -10,8 +10,8 @@ const Conversation = ({ conversation }) => {
     // Ensure both conversation._id and onlineusers contain strings
     const isOnline = onlineusers.includes(conversation._id.toString());
 
-    console.log('Is online:', isOnline, 'Conversation ID:', conversation._id);
-    console.log('Online users:', onlineusers);
+    // console.log('Is online:', isOnline, 'Conversation ID:', conversation._id);
+    // console.log('Online users:', onlineusers);
 
     return (
         <>

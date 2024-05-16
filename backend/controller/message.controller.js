@@ -46,7 +46,7 @@ const sendMessage = async (req, res) => {
         return res.status(200).json({ message: "message sent successfully", message: newMessage });
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         return res.status(500).json({ message: `internal server error from send message, something went wrong`, error: error.message })
     }
 }

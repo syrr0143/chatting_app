@@ -7,7 +7,7 @@ const generateAccessToken = async (req, res) => {
             return res.status(404).json({ message: "user not found" })
         }
         const accessToken = await user.generateAccessToken(_id);
-        console.log('access token', accessToken);
+        // console.log('access token', accessToken);
         await user.save({ validateBeforeSave: false });
         return accessToken;
     } catch (error) {
@@ -17,7 +17,7 @@ const generateAccessToken = async (req, res) => {
 const signup = async (req, res) => {
     try {
         const { name, username, password } = req.body;
-        console.log('from frontend ,', name, username, password)
+        // console.log('from frontend ,', name, username, password)
         if ([name, username, password].some((field) => field?.trim() === "")) {
             return res.status(400).json({ message: "no details enetered for name,username, passowrd" });
         }
@@ -48,7 +48,7 @@ const signup = async (req, res) => {
 const userLogin = async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log(username, password)
+        // console.log(username, password)
         if ([username, password].some((field) => field?.trim() === "")) {
             return res.status(400).json({ message: "all fields are compulsory" });
         }
@@ -62,7 +62,7 @@ const userLogin = async (req, res) => {
             return res.status(401).json({ message: "unauthorized access, wrong password entered" })
         }
         const accessToken = await user.generateAccessToken(user._id);
-        console.log(accessToken);
+        // console.log(accessToken);
         const userLogging = await User.findById(user._id).select("-password");
         const options = {
             httpOnly: true,
@@ -73,7 +73,7 @@ const userLogin = async (req, res) => {
             .cookie("token", accessToken, options)
             .json({ message: "password matched , login successful", user: userLogging, token: accessToken });
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         return res.status(500).json({ message: `internal server error, something went wrong`, error: error.message })
     }
 };

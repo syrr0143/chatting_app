@@ -18,9 +18,9 @@ const uselogin = () => {
                 })
             });
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
             if (data.message === 'all fields are compulsory') {
-                console.log('fileds not filled')
+                //console.log('fileds not filled')
                 toast.error('input are required kikn both fields')
                 throw new Error(data.error);
             }
@@ -37,7 +37,7 @@ const uselogin = () => {
             setAuthUser(data);
             setLoading(false);
         } catch (err) {
-            console.log(err);
+            //console.log(err);
             toast.error(err.message)
             setLoading(false);
         } finally {

@@ -12,7 +12,7 @@ export function verifyJwt(req, res, next) {
         if (err) {
             return res.status(401).json({ message: 'Failed to authenticate token', err });
         }
-        console.log(decoded);
+        // console.log(decoded);
         req.user = decoded;
         next();
     })

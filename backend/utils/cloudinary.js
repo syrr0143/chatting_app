@@ -18,7 +18,7 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     } catch (error) {
         fs.unlinkSync(localFilePath);
-        console.log("error uploading file", error, process.env.API_KEY);
+        // console.log("error uploading file", error, process.env.API_KEY);
         return null;
     }
 }

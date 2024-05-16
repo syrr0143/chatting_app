@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext.jsx';
 import { useUserContext } from '../context/UserContext.jsx';
+const baseurl = import.meta.env.baseurl;
+
+
+
 function userSignup() {
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useAuthContext();
@@ -28,7 +32,7 @@ function userSignup() {
         }
         try {
 
-            const res = await fetch("http://localhost:4000/api/v1/user/signup",
+            const res = await fetch(`${baseurl}/api/v1/user/signup`,
                 {
                     method: "POST",
                     headers: {

@@ -20,14 +20,14 @@ const useGetMessages = () => {
                     }
                 });
                 const data = await res.json(); // Await the response body parsing
-                console.log(data)
+                //console.log(data)
                 if (data.error) {
-                    console.log(data.error)
+                    //console.log(data.error)
                     throw new Error(data.error);
                 }
                 setMessages(data?.conversation?.message);
             } catch (error) {
-                console.log(error)
+                //console.log(error)
 
                 toast.error(error.messages)
             } finally {
