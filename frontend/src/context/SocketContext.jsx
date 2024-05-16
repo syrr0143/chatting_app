@@ -14,7 +14,7 @@ export const SocketContextProvider = ({ children }) => {
         //console.log('AuthUser:', authUser);
         if (authUser) {
 
-            const newSocket = io('http://localhost:4000', {
+            const newSocket = io('https://chatting-app-rt3p.onrender.com', {
                 query: { userid: authUser.user._id },
             });
             setSocket(newSocket);

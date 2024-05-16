@@ -10,7 +10,7 @@ const useLogout = () => {
         try {
             const userData = JSON.parse(localStorage.getItem('chat-user'));
             const token = userData.token;
-            const res = await fetch("http://localhost:4000/api/v1/user/logout", {
+            const res = await fetch("https://chatting-app-rt3p.onrender.com/api/v1/user/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

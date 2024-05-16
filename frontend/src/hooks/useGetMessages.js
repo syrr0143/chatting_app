@@ -12,7 +12,7 @@ const useGetMessages = () => {
             try {
                 const userData = JSON.parse(localStorage.getItem('chat-user'));
                 const token = userData.token;
-                const res = await fetch(`http://localhost:4000/api/v1/message/${selectedConversation._id}`, {
+                const res = await fetch(`https://chatting-app-rt3p.onrender.com/api/v1/message/${selectedConversation._id}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

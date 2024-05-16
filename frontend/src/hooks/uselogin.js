@@ -7,7 +7,7 @@ const uselogin = () => {
     const login = async ({ username, password }) => {
         try {
             setLoading(true);
-            const response = await fetch("http://localhost:4000/api/v1/user/login", {
+            const response = await fetch("https://chatting-app-rt3p.onrender.com/api/v1/user/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
